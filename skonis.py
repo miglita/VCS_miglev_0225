@@ -28,11 +28,14 @@ for product in product_elements2:
 
     a2 = product.find("a", href = True)
     link2 = a2['href']
-    print(link2)
+    # print(link2)
     print('----------------------------------------')
-    b2 = product.findAll("h4") #, {"a": "href"}
-    product_title2 = b2
-    print(product_title2)
+    b2 = product.find("h4")
+    product_title2 = b2.get_text()
+    # product_title1 = re.search('<h4><a href="http://www.skonis-kvapas.lt/juodoji-arbata-su-misko-uogomis">(.*)</a></h4>', b2)
+    # #print(product_title1)
+    # product_title2 = product_title1.group(1)
+    # print(product_title2)
     print('-----------------------------------------')
     c2 = product.find("p", {"class": "price"})
     product_price2 = c2.text
@@ -51,7 +54,6 @@ for product in product_elements2:
     d2 = product.find("div", {"class": "image"})
     imgimg = d2['style']
     product_img1 = re.search('background: #fff url(.*) no-repeat center center;background-size: contain;', imgimg)
-    # print(product_img1)
     product_img2 = product_img1.group(1)
     product_img2 = product_img2.replace("(", "")
     product_img2 = product_img2.replace(")", "")
@@ -62,16 +64,8 @@ for product in product_elements2:
     # full_list2.__len__()
 print("------------------------")
 print(full_list2)
-#    kwargs_list = full_list(**{random_dict})
-#*kwargs ir args
 
 print('-------------------------------------------------------')
+full_slist2 = sorted(full_list2, key = lambda k: k['price'])
+print(full_slist2)
 
-full_slist = sorted(full_list, key = lambda k: k['price'])
-print(full_slist)
-
-#https://stackoverflow.com/questions/20577840/python-dictionary-sorting-in-descending-order-based-on-values
-#kodel neprintina pilno listo ascending
-
-
-#print sorted(lis, key = lambda i: i['age'])  // https://www.geeksforgeeks.org/ways-sort-list-dictionaries-values-python-using-lambda-function/
