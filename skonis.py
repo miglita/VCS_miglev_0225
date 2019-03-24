@@ -29,7 +29,7 @@ for product in product_elements2:
     a2 = product.find("a", href = True)
     link2 = a2['href']
     # print(link2)
-    print('----------------------------------------')
+    # print('----------------------------------------')
     b2 = product.find("h4")
     product_title2 = b2.get_text()
     # product_title1 = re.search('<h4><a href="http://www.skonis-kvapas.lt/juodoji-arbata-su-misko-uogomis">(.*)</a></h4>', b2)
@@ -37,12 +37,35 @@ for product in product_elements2:
     # product_title2 = product_title1.group(1)
     # print(product_title2)
     print('-----------------------------------------')
-    c2 = product.find("p", {"class": "price"})
+    c2 = product.find('p', {'class': 'price'})
+    # print(c2)
+    # if product.findAll('p', {'class': 'price-new'}) is not None:
+    #     c2 = product.find('p', {'class':'price-new'})
+    #     print(c2)
+    # else:
+    #     c2 = product.find("p", {"class": "price"}).get_text()
+    #     print(c2)
     product_price2 = c2.text
-    product_price2 = product_price2.replace("nuo", "")
-    product_price2 = product_price2.replace("€", "")
     product_price2 = product_price2.replace("\n", "")
     product_price2 = product_price2.strip()
+    product_price2 = product_price2.replace("", "")
+    product_price2 = product_price2.replace("nuo", "")
+    product_price2 = product_price2.strip()
+    len_pr_pr_2 = len(product_price2)
+    product_price1 = re.search('€(.*)€', product_price2)
+    if product_price1 is not None:
+        product_price1_1 = product_price1.group(1)
+        print(type(product_price1_1)
+        product_price1_1match = re.match(product_price1_1)
+        print(product_price1_1match)
+        print(type(product_price1_1match))
+        len_pr_pr_1 = len(product_price1)
+        print(len_pr_pr_1)
+    # product_price2 = product_price2 - product_price1
+    print(product_price2)
+    product_price2 = product_price2.replace('product_price1', "")
+
+
     print(product_price2)
     product_price_2= None
     product_price_2 = float(product_price2)
